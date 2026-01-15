@@ -7,7 +7,6 @@ yarn-error.log
 # Production
 build/
 dist/
-.next/
 out/
 
 # Testing
@@ -44,7 +43,6 @@ LICENSE
 # Development
 jest.config.ts
 jest.setup.ts
-tsconfig.json
 eslint.config.mjs
 postcss.config.mjs
 tailwind.config.mjs
