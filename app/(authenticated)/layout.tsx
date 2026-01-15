@@ -1,5 +1,3 @@
-'use client';
-
 import type { ReactNode } from 'react';
 import { Sidebar } from '@/src/components/Sidebar';
 import { Breadcrumb } from '@/src/components/Breadcrumb';
