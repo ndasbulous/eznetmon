@@ -17,6 +17,18 @@ export interface NetworkTest {
   status: 'success' | 'warning' | 'error';
 }
 
+export interface NetworkTestResult {
+  hostname: string;
+  timestamp: string;
+  ping: number;
+  latency: number;
+  jitter: number;
+  packetLoss: number;
+  status: 'success' | 'warning' | 'error';
+  minLatency: number;
+  maxLatency: number;
+}
+
 export interface StatisticsSummary {
   label: string;
   value: string;
