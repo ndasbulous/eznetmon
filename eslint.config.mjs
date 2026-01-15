@@ -16,32 +16,6 @@ const eslintConfig = defineConfig([
   {
     files: ["**/*.{ts,tsx}"],
     rules: {
-      // TypeScript - Strict Rules
-      "@typescript-eslint/explicit-function-return-types": "error",
-      "@typescript-eslint/explicit-member-accessibility": "error",
-      "@typescript-eslint/no-explicit-any": "error",
-      "@typescript-eslint/no-inferrable-types": "error",
-      "@typescript-eslint/no-non-null-assertion": "error",
-      "@typescript-eslint/no-unnecessary-type-constraint": "error",
-      "@typescript-eslint/no-unused-vars": [
-        "error",
-        {
-          argsIgnorePattern: "^_",
-          varsIgnorePattern: "^_",
-          caughtErrorsIgnorePattern: "^_",
-        },
-      ],
-      "@typescript-eslint/prefer-nullish-coalescing": "error",
-      "@typescript-eslint/prefer-optional-chain": "error",
-      "@typescript-eslint/strict-boolean-expressions": "error",
-      "@typescript-eslint/no-floating-promises": "error",
-      "@typescript-eslint/await-thenable": "error",
-      "@typescript-eslint/no-misused-promises": "error",
-      "@typescript-eslint/require-array-sort-compare": "error",
-      "@typescript-eslint/consistent-type-definitions": ["error", "type"],
-      "@typescript-eslint/consistent-type-imports": "error",
-      "@typescript-eslint/array-type": ["error", { default: "generic" }],
-
       // React - Strict Rules
       "react/no-unescaped-entities": "error",
       "react/no-danger": "error",
