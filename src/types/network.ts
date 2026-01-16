@@ -27,6 +27,8 @@ export interface NetworkTestResult {
   status: 'success' | 'warning' | 'error';
   minLatency: number;
   maxLatency: number;
+  id?: number;
+  created_at?: string;
 }
 
 export interface StatisticsSummary {
