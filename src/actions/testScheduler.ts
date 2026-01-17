@@ -46,7 +46,7 @@ export async function runScheduledTests(): Promise<{
 
     if (scheduledTests.length === 0) {
       // If no scheduled tests, initialize with defaults
-      console.log('No scheduled tests found. Running tests for default hosts:', DEFAULT_HOSTS);
+      console.warn('No scheduled tests found. Running tests for default hosts:', DEFAULT_HOSTS);
       return await runTestsForHosts(DEFAULT_HOSTS);
     }
 
@@ -56,12 +56,12 @@ export async function runScheduledTests(): Promise<{
 
     for (const job of scheduledTests) {
       if (!shouldRunTest(job)) {
-        console.log(`Skipping ${job.hostname} - not due yet`);
+        console.warn(`Skipping ${job.hostname} - not due yet`);
         continue;
       }
 
       try {
-        console.log(`Running test for ${job.hostname}`);
+        console.warn(`Running test for ${job.hostname}`);
         const result = await performNetworkTest(job.hostname);
 
         saveNetworkTest({
@@ -73,7 +73,7 @@ export async function runScheduledTests(): Promise<{
         updateLastRun(job.hostname);
         executed++;
 
-        console.log(`Test completed for ${job.hostname}:`, result);
+        console.warn(`Test completed for ${job.hostname}:`, result);
       } catch (error) {
         failed++;
         console.error(`Test failed for ${job.hostname}:`, error);
@@ -116,7 +116,7 @@ export async function runTestsForHosts(
 
   for (const hostname of hosts) {
     try {
-      console.log(`Running test for ${hostname}`);
+      console.warn(`Running test for ${hostname}`);
       const result = await performNetworkTest(hostname);
 
       saveNetworkTest({
@@ -127,7 +127,7 @@ export async function runTestsForHosts(
       results.push(result);
       executed++;
 
-      console.log(`Test completed for ${hostname}:`, result);
+      console.warn(`Test completed for ${hostname}:`, result);
     } catch (error) {
       failed++;
       console.error(`Test failed for ${hostname}:`, error);

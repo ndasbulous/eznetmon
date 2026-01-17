@@ -12,7 +12,6 @@ export async function performNetworkTest(
   numberOfPings: number = 5,
   timeout: number = 5000
 ): Promise<NetworkTestResult> {
-  const startTime = Date.now();
   const times: Array<number> = [];
   let successfulPings: number = 0;
 
@@ -25,8 +24,6 @@ export async function performNetworkTest(
     // Attempt multiple pings
     for (let i = 0; i < numberOfPings; i++) {
       try {
-        const pingStartTime = Date.now();
-
         // Use DNS resolution and TCP connection to estimate latency
         // This is more reliable than ICMP ping in container environments
         const response = await performSimplePing(hostname, timeout);

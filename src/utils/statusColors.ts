@@ -1,5 +1,3 @@
-import type { StatusType } from '@/src/types/network';
-
 export function getStatusColor(status: string): string {
   switch (status) {
     case 'good':

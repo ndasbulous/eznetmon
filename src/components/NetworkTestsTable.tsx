@@ -47,7 +47,7 @@ export function NetworkTestsTable({
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-              {tests.map((test: NetworkTest, index: number) => (
+              {tests.map((test: NetworkTest) => (
                 <tr
                   key={test.timestamp}
                   className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"

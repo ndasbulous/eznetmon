@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { saveNetworkTest, getNetworkTestResults, getTestStatistics } from '@/src/server/db';
-import type { NetworkTestResult } from '@/src/types/network';
 
 export async function POST(request: NextRequest) {
   try {

@@ -1,8 +1,7 @@
 'use server';
 
-import { getTestResultsFromDb, runScheduledTests } from '@/src/actions/testScheduler';
+import { runScheduledTests } from '@/src/actions/testScheduler';
 import { getTestStatistics, getLatestTestResults } from '@/src/server/db';
-import type { NetworkTestResult } from '@/src/types/network';
 
 export async function fetchDashboardData() {
   try {
