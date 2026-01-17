@@ -1,3 +1,5 @@
+'use client';
+
 import type { ReactNode } from 'react';
 import { NetworkTestDisplay } from '@/src/components/NetworkTestDisplay';
 import { HistoricalChart } from '@/src/components/HistoricalChart';

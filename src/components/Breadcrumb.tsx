@@ -3,29 +3,11 @@
 import type { ReactNode } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { usePathname } from 'next/navigation';
+import { generateBreadcrumbs } from './breadcrumbUtils';
 
 interface BreadcrumbItem {
   label: string;
   href?: string;
-}
-
-function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
-  const segments = pathname.split('/').filter(Boolean);
-  const breadcrumbs: BreadcrumbItem[] = [];
-
-  let currentPath = '';
-  for (const segment of segments) {
-    currentPath += `/${segment}`;
-    const label = segment.charAt(0).toUpperCase() + segment.slice(1);
-    breadcrumbs.push({ label, href: currentPath });
-  }
-
-  // Make last item not clickable
-  if (breadcrumbs.length > 1) {
-    breadcrumbs[breadcrumbs.length - 1].href = undefined;
-  }
-
-  return breadcrumbs;
 }
 
 export function Breadcrumb(): ReactNode {

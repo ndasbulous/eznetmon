@@ -1,77 +1,14 @@
 import type { ReactNode } from 'react';
 import { testNetworkLatency } from '@/src/actions/networkTest';
 import type { NetworkTestResult } from '@/src/types/network';
-import { Activity, AlertCircle, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Activity, AlertCircle } from 'lucide-react';
+import { MetricRow } from './MetricRow';
+import { getStatusColor, getTextColor } from './statusHelpers';
+import { StatusIcon } from './StatusIcon';
 
 interface NetworkTestDisplayProps {
   hostname?: string;
   numberOfPings?: number;
-}
-
-function getStatusIcon(
-  status: 'success' | 'warning' | 'error'
-): ReactNode {
-  switch (status) {
-    case 'success':
-      return <CheckCircle className="w-5 h-5 text-green-600" />;
-    case 'warning':
-      return <AlertTriangle className="w-5 h-5 text-yellow-600" />;
-    case 'error':
-      return <AlertCircle className="w-5 h-5 text-red-600" />;
-  }
-}
-
-function getStatusColor(status: 'success' | 'warning' | 'error'): string {
-  switch (status) {
-    case 'success':
-      return 'bg-green-50 dark:bg-green-950 border-green-200 dark:border-green-800';
-    case 'warning':
-      return 'bg-yellow-50 dark:bg-yellow-950 border-yellow-200 dark:border-yellow-800';
-    case 'error':
-      return 'bg-red-50 dark:bg-red-950 border-red-200 dark:border-red-800';
-  }
-}
-
-function getTextColor(status: 'success' | 'warning' | 'error'): string {
-  switch (status) {
-    case 'success':
-      return 'text-green-900 dark:text-green-100';
-    case 'warning':
-      return 'text-yellow-900 dark:text-yellow-100';
-    case 'error':
-      return 'text-red-900 dark:text-red-100';
-  }
-}
-
-interface MetricRowProps {
-  label: string;
-  value: string | number;
-  unit?: string;
-  icon?: ReactNode;
-}
-
-function MetricRow({
-  label,
-  value,
-  unit,
-  icon,
-}: MetricRowProps): ReactNode {
-  return (
-    <div className="flex items-center justify-between py-3 border-b border-gray-200 dark:border-gray-700 last:border-b-0">
-      <div className="flex items-center gap-2">
-        {icon ? (
-          <span className="text-gray-400 dark:text-gray-600">{icon}</span>
-        ) : null}
-        <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
-          {label}
-        </span>
-      </div>
-      <span className="text-sm font-bold text-gray-900 dark:text-white">
-        {value}
-        {unit ? ` ${unit}` : ''}
-      </span>
-    </div>
-  );
 }
 
 export async function NetworkTestDisplay({
@@ -124,7 +61,7 @@ export async function NetworkTestDisplay({
       <div className="flex items-start justify-between mb-6">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            {getStatusIcon(result.status)}
+            {StatusIcon(result.status)}
             <h3 className="text-lg font-semibold">
               Network Test Results
             </h3>
@@ -173,7 +110,7 @@ export async function NetworkTestDisplay({
       {/* Status Indicator */}
       <div className="pt-4 border-t border-current/20">
         <div className="flex items-center gap-2">
-          {getStatusIcon(result.status)}
+          {StatusIcon(result.status)}
           <span className="text-sm font-medium capitalize">
             {result.status === 'success'
               ? 'Network connection is stable'
