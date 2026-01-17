@@ -5,12 +5,12 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    const { hostname, timestamp, ping, latency, jitter, packetLoss, minLatency, maxLatency, status } = body;
+    const { hostname, timestamp, latency, jitter, packetLoss, minLatency, maxLatency, status } = body;
 
     // Validate required fields
-    if (!hostname || !timestamp || typeof ping !== 'number') {
+    if (!hostname || !timestamp || typeof latency !== 'number') {
       return NextResponse.json(
-        { error: 'Missing required fields: hostname, timestamp, ping' },
+        { error: 'Missing required fields: hostname, timestamp, latency' },
         { status: 400 }
       );
     }
@@ -19,12 +19,11 @@ export async function POST(request: NextRequest) {
     saveNetworkTest({
       hostname,
       timestamp,
-      ping,
-      latency: latency || ping,
+      latency,
       jitter: jitter || 0,
       packetLoss: packetLoss || 0,
-      minLatency: minLatency || ping,
-      maxLatency: maxLatency || ping,
+      minLatency: minLatency || latency,
+      maxLatency: maxLatency || latency,
       status: status || 'success',
     });
 

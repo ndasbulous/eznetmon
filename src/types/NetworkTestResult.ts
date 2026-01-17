@@ -1,7 +1,6 @@
 export interface NetworkTestResult {
   hostname: string;
   timestamp: string;
-  ping: number;
   latency: number;
   jitter: number;
   packetLoss: number;

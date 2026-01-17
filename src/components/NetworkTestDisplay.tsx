@@ -82,7 +82,6 @@ export async function NetworkTestDisplay({
         <div className="bg-white/50 dark:bg-gray-800/50 rounded-lg p-4">
           <p className="text-xs font-medium opacity-75 mb-3">Latency</p>
           <div className="space-y-2">
-            <MetricRow label="Average (Ping)" value={result.ping} unit="ms" />
             <MetricRow label="Minimum" value={result.latency} unit="ms" />
             <MetricRow label="Maximum" value={result.maxLatency} unit="ms" />
           </div>

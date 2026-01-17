@@ -83,7 +83,6 @@ export async function runScheduledTests(): Promise<{
         saveNetworkTest({
           hostname: job.hostname,
           timestamp,
-          ping: 0,
           latency: 0,
           jitter: 0,
           packetLoss: 100,
@@ -137,7 +136,6 @@ export async function runTestsForHosts(
       saveNetworkTest({
         hostname,
         timestamp,
-        ping: 0,
         latency: 0,
         jitter: 0,
         packetLoss: 100,

@@ -67,22 +67,13 @@ export default function NetworkTestExamplePage(): ReactNode {
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Ping Chart */}
-          <HistoricalChart
-            data={historicalData}
-            title="Average Ping Response Time"
-            metric="ping"
-            unit="ms"
-            color="#3b82f6"
-          />
-
           {/* Latency Chart */}
           <HistoricalChart
             data={historicalData}
-            title="Network Latency"
+            title="Latency Response Time"
             metric="latency"
             unit="ms"
-            color="#10b981"
+            color="#3b82f6"
           />
 
           {/* Jitter Chart */}
@@ -111,9 +102,6 @@ export default function NetworkTestExamplePage(): ReactNode {
           About Network Tests
         </h3>
         <ul className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
-          <li>
-            <strong>Ping:</strong> Average response time to the host
-          </li>
           <li>
             <strong>Latency:</strong> Minimum and maximum response times
           </li>

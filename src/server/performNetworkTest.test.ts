@@ -147,7 +147,7 @@ describe('performNetworkTest', () => {
 
     const result = await performNetworkTest('example.com', 1);
 
-    expect(result.ping).toBe(50.6);
+    expect(result.latency).toBe(50.6);
     expect(result.jitter).toBe(5.1);
     expect(result.packetLoss).toBe(10.5);
   });

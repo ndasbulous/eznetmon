@@ -14,7 +14,6 @@ export function exampleSaveTest() {
   saveNetworkTest({
     hostname: 'google.com',
     timestamp: new Date().toISOString(),
-    ping: 24,
     latency: 18,
     jitter: 2.5,
     packetLoss: 0,

@@ -43,7 +43,6 @@ export async function performNetworkTest(
       return {
         hostname,
         timestamp: new Date().toISOString(),
-        ping: 0,
         latency: 0,
         jitter: 0,
         packetLoss: 100,
@@ -71,7 +70,6 @@ export async function performNetworkTest(
     return {
       hostname,
       timestamp: new Date().toISOString(),
-      ping: Math.round(avgLatency * 10) / 10,
       latency: Math.round(minLatency * 10) / 10,
       jitter: Math.round(jitter * 10) / 10,
       packetLoss: Math.round(packetLoss * 10) / 10,
@@ -86,7 +84,6 @@ export async function performNetworkTest(
     return {
       hostname,
       timestamp: new Date().toISOString(),
-      ping: 0,
       latency: 0,
       jitter: 0,
       packetLoss: 100,

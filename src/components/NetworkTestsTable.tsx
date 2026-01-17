@@ -30,9 +30,6 @@ export function NetworkTestsTable({
                   Timestamp
                 </th>
                 <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
-                  Ping (ms)
-                </th>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
                   Latency (ms)
                 </th>
                 <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
@@ -54,9 +51,6 @@ export function NetworkTestsTable({
                 >
                   <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-100">
                     {test.timestamp}
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-100 font-medium">
-                    {test.ping}
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-100 font-medium">
                     {test.latency}

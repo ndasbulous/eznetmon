@@ -21,7 +21,6 @@ export function generateMockHistoricalData(): Array<HistoricalDataPoint> {
     data.push({
       timestamp: time.toISOString(),
       time: `${hour}:${minute}`,
-      ping: basePing + Math.random() * 10,
       latency: basePing - 5 + Math.random() * 5,
       jitter: Math.max(0.5, 2 + jitterVariation + Math.random() * 2),
       packetLoss: Math.max(0, Math.random() * 5),
@@ -35,7 +34,7 @@ export function generateMockHistoricalData(): Array<HistoricalDataPoint> {
  * Generate mock data for a specific metric for the last N hours
  */
 export function generateMockMetricHistory(
-  metric: 'ping' | 'latency' | 'jitter' | 'packetLoss',
+  metric: 'latency' | 'jitter' | 'packetLoss',
   hours: number = 24
 ): Array<HistoricalDataPoint> {
   const data: Array<HistoricalDataPoint> = [];
@@ -49,9 +48,6 @@ export function generateMockMetricHistory(
     let metricValue: number = 0;
 
     switch (metric) {
-      case 'ping':
-        metricValue = 20 + Math.random() * 15;
-        break;
       case 'latency':
         metricValue = 15 + Math.random() * 10;
         break;

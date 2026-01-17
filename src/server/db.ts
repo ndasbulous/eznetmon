@@ -122,7 +122,6 @@ export function getNetworkTestResults(
     .map(t => ({
       hostname: t.hostname,
       timestamp: t.timestamp,
-      ping: t.ping,
       latency: t.latency,
       jitter: t.jitter,
       packetLoss: t.packetLoss,
@@ -149,7 +148,6 @@ export function getLatestTestResults(hostname?: string): NetworkTestResult[] {
     return [{
       hostname: latest.hostname,
       timestamp: latest.timestamp,
-      ping: latest.ping,
       latency: latest.latency,
       jitter: latest.jitter,
       packetLoss: latest.packetLoss,
@@ -174,7 +172,6 @@ export function getLatestTestResults(hostname?: string): NetworkTestResult[] {
   return Array.from(latestByHost.values()).map(t => ({
     hostname: t.hostname,
     timestamp: t.timestamp,
-    ping: t.ping,
     latency: t.latency,
     jitter: t.jitter,
     packetLoss: t.packetLoss,
@@ -205,7 +202,6 @@ export function getTestResultsForPeriod(
     .map(t => ({
       hostname: t.hostname,
       timestamp: t.timestamp,
-      ping: t.ping,
       latency: t.latency,
       jitter: t.jitter,
       packetLoss: t.packetLoss,
@@ -245,10 +241,11 @@ export function getTestStatistics(hostname?: string): {
     };
   }
 
-  const avgPing = filtered.reduce((sum, t) => sum + (t.ping || 0), 0) / filtered.length;
-  const pings = filtered.map(t => t.ping || 0);
-  const minPing = Math.min(...pings);
-  const maxPing = Math.max(...pings);
+  // Using latency for ping stats (ping was deprecated in favor of latency)
+  const avgPing = filtered.reduce((sum, t) => sum + (t.latency || 0), 0) / filtered.length;
+  const latencies = filtered.map(t => t.latency || 0);
+  const minPing = Math.min(...latencies);
+  const maxPing = Math.max(...latencies);
   const avgLatency = filtered.reduce((sum, t) => sum + (t.latency || 0), 0) / filtered.length;
   const avgJitter = filtered.reduce((sum, t) => sum + (t.jitter || 0), 0) / filtered.length;
   const avgPacketLoss = filtered.reduce((sum, t) => sum + (t.packetLoss || 0), 0) / filtered.length;

@@ -40,7 +40,6 @@ export async function testNetworkLatency(
     return {
       hostname: trimmedHostname,
       timestamp: new Date().toISOString(),
-      ping: 0,
       latency: 0,
       jitter: 0,
       packetLoss: 100,

@@ -14,7 +14,6 @@ import {
 export interface HistoricalDataPoint {
   timestamp: string;
   time: string;
-  ping?: number;
   latency?: number;
   jitter?: number;
   packetLoss?: number;
@@ -23,7 +22,7 @@ export interface HistoricalDataPoint {
 interface HistoricalChartProps {
   data: Array<HistoricalDataPoint>;
   title: string;
-  metric: 'ping' | 'latency' | 'jitter' | 'packetLoss';
+  metric: 'latency' | 'jitter' | 'packetLoss';
   unit: string;
   color: string;
 }
