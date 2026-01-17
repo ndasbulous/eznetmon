@@ -20,7 +20,9 @@ interface ScheduledTestJob {
 }
 
 function shouldRunTest(job: ScheduledTestJob): boolean {
-  if (!job.is_active) return false;
+  if (!job.is_active) {
+    return false;
+  }
 
   if (!job.last_run) {
     // Never run before, should run

@@ -76,18 +76,18 @@ function initializeDatabase() {
 
 export function getDatabase() {
   initializeDatabase();
-  return { close: () => {} };
+  return { close: () => { } };
 }
 
 export function saveNetworkTest(test: Omit<NetworkTestResult, 'status'> & { status: string }): void {
   const tests = loadTestsData();
   const id = Math.max(0, ...tests.map(t => t.id || 0)) + 1;
-  
+
   // Check if this hostname+timestamp combo already exists and replace it
   const existingIndex = tests.findIndex(
     t => t.hostname === test.hostname && t.timestamp === test.timestamp
   );
-  
+
   const newTest: StoredTest = {
     ...test,
     id: existingIndex >= 0 ? tests[existingIndex].id : id,
@@ -109,7 +109,7 @@ export function getNetworkTestResults(
   offset: number = 0
 ): NetworkTestResult[] {
   const tests = loadTestsData();
-  
+
   let filtered = tests;
   if (hostname) {
     filtered = filtered.filter(t => t.hostname === hostname);
@@ -136,12 +136,14 @@ export function getNetworkTestResults(
 
 export function getLatestTestResults(hostname?: string): NetworkTestResult[] {
   const tests = loadTestsData();
-  
+
   if (hostname) {
     const filtered = tests.filter(t => t.hostname === hostname);
-    if (filtered.length === 0) return [];
+    if (filtered.length === 0) {
+      return [];
+    }
     // Return latest one
-    const latest = filtered.sort((a, b) => 
+    const latest = filtered.sort((a, b) =>
       new Date(b.created_at || '').getTime() - new Date(a.created_at || '').getTime()
     )[0];
     return [{
@@ -161,7 +163,7 @@ export function getLatestTestResults(hostname?: string): NetworkTestResult[] {
 
   // Get latest for each hostname
   const latestByHost = new Map<string, StoredTest>();
-  
+
   tests.forEach(test => {
     const current = latestByHost.get(test.hostname);
     if (!current || new Date(test.created_at || '').getTime() > new Date(current.created_at || '').getTime()) {
@@ -225,7 +227,7 @@ export function getTestStatistics(hostname?: string): {
   testCount: number;
 } {
   const tests = loadTestsData();
-  
+
   let filtered = tests;
   if (hostname) {
     filtered = filtered.filter(t => t.hostname === hostname);
@@ -265,7 +267,7 @@ export function getTestStatistics(hostname?: string): {
 export function scheduleTest(hostname: string, intervalMinutes: number = 5): void {
   const schedules = loadSchedulesData();
   const existingIndex = schedules.findIndex(s => s.hostname === hostname);
-  
+
   const schedule: StoredSchedule = {
     id: existingIndex >= 0 ? schedules[existingIndex].id : Math.max(0, ...schedules.map(s => s.id || 0)) + 1,
     hostname,
@@ -292,7 +294,7 @@ export function getScheduledTests(activeOnly: boolean = true): Array<{
   last_run: string | null;
 }> {
   const schedules = loadSchedulesData();
-  
+
   let filtered = schedules;
   if (activeOnly) {
     filtered = filtered.filter(s => s.is_active);
@@ -310,7 +312,7 @@ export function getScheduledTests(activeOnly: boolean = true): Array<{
 export function updateLastRun(hostname: string): void {
   const schedules = loadSchedulesData();
   const schedule = schedules.find(s => s.hostname === hostname);
-  
+
   if (schedule) {
     schedule.last_run = new Date().toISOString();
     saveSchedulesData(schedules);
@@ -320,10 +322,10 @@ export function updateLastRun(hostname: string): void {
 export function deleteOldResults(olderThanDays: number = 30): number {
   const tests = loadTestsData();
   const cutoffTime = Date.now() - olderThanDays * 24 * 60 * 60 * 1000;
-  
+
   const beforeCount = tests.length;
   const filtered = tests.filter(t => new Date(t.created_at).getTime() > cutoffTime);
-  
+
   if (filtered.length < beforeCount) {
     saveTestsData(filtered);
   }
